@@ -8,7 +8,7 @@ import { connect } from 'react-redux';
 ================================================================================
 */
 
-class PageAppSettings extends Component {
+class PageSettings extends Component {
   constructor() {
     super();
   }
@@ -20,7 +20,7 @@ class PageAppSettings extends Component {
   */
 
   render() {
-    return <div className="app-screen">PageAppSettings</div>;
+    return <div className="app-screen">PageSettings</div>;
   }
 }
 
@@ -38,4 +38,4 @@ const StoreActions = {};
 export default connect(
   mapStateToProps,
   StoreActions
-)(PageAppSettings);
+)(PageSettings);

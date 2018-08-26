@@ -14,7 +14,7 @@ import GameRouter from './GameRouter';
 
 // containers
 import PageHome from 'containers/pages/app/PageHome';
-import PageAppSettings from 'containers/pages/app/PageAppSettings';
+import PageSettings from 'containers/pages/app/PageSettings';
 import PageGames from 'containers/pages/app/PageGames';
 
 /*
@@ -40,7 +40,7 @@ class AppRouter extends Component {
         <div className="app-wrapper">
           <Switch>
             <Route exact path={AppUrls.URL_HOME} component={PageHome} />
-            <Route exact path={AppUrls.URL_APP_SETTINGS} component={PageAppSettings} />
+            <Route exact path={AppUrls.URL_APP_SETTINGS} component={PageSettings} />
             <Route exact path={AppUrls.URL_GAMES} component={PageGames} />
             <Route path={AppUrls.GetUrlGame()} component={GameRouter} />
           </Switch>
