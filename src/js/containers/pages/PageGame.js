@@ -6,7 +6,7 @@ import { connect } from 'react-redux';
 import { URL_PROP_GAMEID } from 'constants/AppUrls';
 
 // actions
-import { ViewGameSettings } from 'store/actions/Nav.actions';
+import * as NavActions from 'store/actions/Nav.actions';
 
 // selectors
 import { GetGameById } from 'store/selectors/Games.selectors';
@@ -21,7 +21,17 @@ class PageGame extends Component {
   constructor() {
     super();
 
+    this.bindedHandleViewGameAssets = this.handleViewGameAssets.bind(this);
+    this.bindedHandleViewGameScreens = this.handleViewGameScreens.bind(this);
     this.bindedHandleViewGameSettings = this.handleViewGameSettings.bind(this);
+  }
+
+  handleViewGameAssets() {
+    this.props.ViewGameAssets(this.props.game.id);
+  }
+
+  handleViewGameScreens() {
+    this.props.ViewGameScreens(this.props.game.id);
   }
 
   handleViewGameSettings() {
@@ -38,6 +48,8 @@ class PageGame extends Component {
     return (
       <div className="app-screen">
         <p>{this.props.game.name}</p>
+        <button onClick={this.bindedHandleViewGameAssets}>Game Assets</button>
+        <button onClick={this.bindedHandleViewGameScreens}>Game Screens</button>
         <button onClick={this.bindedHandleViewGameSettings}>Game Settings</button>
       </div>
     );
@@ -58,7 +70,9 @@ function mapStateToProps(state, props) {
 }
 
 const storeActions = {
-  ViewGameSettings
+  ViewGameSettings: NavActions.ViewGameSettings,
+  ViewGameAssets: NavActions.ViewGameAssets,
+  ViewGameScreens: NavActions.ViewGameScreens
 };
 
 export default connect(
