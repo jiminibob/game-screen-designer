@@ -6,7 +6,7 @@ import { connect } from 'react-redux';
 import { URL_PROP_GAMEID } from 'constants/AppUrls';
 
 // actions
-import { ViewGameSettings } from 'store/actions/App.actions';
+import { ViewGameSettings } from 'store/actions/Nav.actions';
 
 // selectors
 import { GetGameById } from 'store/selectors/Games.selectors';

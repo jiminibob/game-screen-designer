@@ -3,7 +3,7 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux';
 
 // actions
-import { ViewGame } from 'store/actions/App.actions';
+import { ViewGame } from 'store/actions/Nav.actions';
 
 // selectors
 import { GetGames } from 'store/selectors/Games.selectors';

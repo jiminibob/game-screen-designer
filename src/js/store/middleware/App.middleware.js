@@ -1,9 +1,3 @@
-// libs
-import { push } from 'connected-react-router';
-
-// constants
-import * as AppUrls from 'constants/AppUrls';
-
 // models
 import { GenerateRandomGames } from 'store/models/Test.model';
 
@@ -28,20 +22,4 @@ const AppMiddleware = ({ dispatch }) => (next) => (action) => {
   }
 };
 
-const ActionRedirects = ({ dispatch }) => (next) => (action) => {
-  next(action);
-
-  switch (action.type) {
-    case AppActions.VIEW_GAMES:
-      dispatch(push(AppUrls.URL_GAMES));
-      break;
-    case AppActions.VIEW_GAME:
-      dispatch(push(AppUrls.GetUrlGame(action.payload)));
-      break;
-    case AppActions.VIEW_GAME_SETTINGS:
-      dispatch(push(AppUrls.GetUrlGameSettings(action.payload)));
-      break;
-  }
-};
-
-export default [AppMiddleware, ActionRedirects];
+export default [AppMiddleware];

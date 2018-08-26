@@ -3,7 +3,7 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux';
 
 // actions
-import { ViewGames } from 'store/actions/App.actions';
+import { ViewGames } from 'store/actions/Nav.actions';
 
 /*
 ================================================================================
