@@ -6,6 +6,10 @@ import { Switch, Route, Redirect, withRouter } from 'react-router-dom';
 // constants
 import * as AppUrls from 'constants/AppUrls';
 
+// selectors
+import { GetBootstrapComplete } from 'store/selectors/App.selectors';
+
+// sub routers
 import GameRouter from './GameRouter';
 
 // contaienrs
@@ -31,16 +35,21 @@ class AppRouter extends Component {
   */
 
   render() {
-    return (
-      <div className="app-wrapper">
-        <Switch>
-          <Route exact path={AppUrls.URL_HOME} component={PageHome} />
-          <Route exact path={AppUrls.URL_APP_SETTINGS} component={PageAppSettings} />
-          <Route exact path={AppUrls.URL_GAMES} component={PageGames} />
-          <Route path={AppUrls.GetUrlGame()} component={GameRouter} />
-        </Switch>
-      </div>
-    );
+    if (this.props.bootComplete) {
+      return (
+        <div className="app-wrapper">
+          <Switch>
+            <Route exact path={AppUrls.URL_HOME} component={PageHome} />
+            <Route exact path={AppUrls.URL_APP_SETTINGS} component={PageAppSettings} />
+            <Route exact path={AppUrls.URL_GAMES} component={PageGames} />
+            <Route path={AppUrls.GetUrlGame()} component={GameRouter} />
+          </Switch>
+        </div>
+      );
+    }
+
+    // boot had not finished, app is not ready
+    return null;
   }
 }
 
@@ -51,7 +60,9 @@ class AppRouter extends Component {
 */
 
 function mapStateToProps(state, props) {
-  return {};
+  return {
+    bootComplete: GetBootstrapComplete({ state })
+  };
 }
 function mapDispatchToProps(dispatch) {
   return {};

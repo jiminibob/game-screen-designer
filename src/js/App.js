@@ -23,6 +23,9 @@ import RootMiddleware from 'store/RootMiddleware';
 // main entry
 import AppRouter from 'containers/routers/AppRouter';
 
+//actions
+import { StartBoot } from 'store/actions/App.actions';
+
 export default () => {
   // set up history and routing
   const history = createHashHistory({});
@@ -40,6 +43,7 @@ export default () => {
 
   // create store
   const store = createStore(storeReducer, {}, storeEnhancer);
+  store.dispatch(StartBoot());
 
   // render app entry
   render(
