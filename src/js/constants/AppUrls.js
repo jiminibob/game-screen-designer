@@ -24,3 +24,6 @@ export const GetUrlGameScreens = (gameid) => {
 export const GetUrlGameScreen = (gameid, screenid) => {
   return GetUrlGameScreens(gameid) + (screenid || ':' + URL_PROP_SCREENID) + '/';
 };
+export const GetUrlGameSettings = (gameid) => {
+  return URL_GAMES + (gameid || ':' + URL_PROP_GAMEID) + '/settings/';
+};

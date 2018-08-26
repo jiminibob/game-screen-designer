@@ -12,6 +12,7 @@ import PageGameAssets from 'containers/pages/PageGameAssets';
 import PageGameAsset from 'containers/pages/PageGameAsset';
 import PageGameScreens from 'containers/pages/PageGameScreens';
 import PageGameScreen from 'containers/pages/PageGameScreen';
+import PageGameSettings from 'containers/pages/PageGameSettings';
 
 /*
 ================================================================================
@@ -61,6 +62,7 @@ class GameRouter extends Component {
         <Route exact path={AppUrls.GetUrlGameAsset()} component={PageGameAsset} />
         <Route exact path={AppUrls.GetUrlGameScreens()} component={PageGameScreens} />
         <Route exact path={AppUrls.GetUrlGameScreen()} component={PageGameScreen} />
+        <Route exact path={AppUrls.GetUrlGameSettings()} component={PageGameSettings} />
       </Switch>
     );
   }
