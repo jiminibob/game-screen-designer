@@ -35,6 +35,9 @@ const ActionRedirects = ({ dispatch }) => (next) => (action) => {
     case AppActions.VIEW_GAMES:
       dispatch(push(AppUrls.URL_GAMES));
       break;
+    case AppActions.VIEW_GAME:
+      dispatch(push(AppUrls.GetUrlGame(action.payload)));
+      break;
   }
 };
 

@@ -2,6 +2,9 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 
+// actions
+import { ViewGame } from 'store/actions/App.actions';
+
 // selectors
 import { GetGames } from 'store/selectors/Games.selectors';
 
@@ -14,6 +17,21 @@ import { GetGames } from 'store/selectors/Games.selectors';
 class PageGames extends Component {
   constructor() {
     super();
+
+    this.bindedHandleGameSelect = this.handleGameSelect.bind(this);
+  }
+
+  /*
+  ================================================================================
+    user input
+  ================================================================================
+  */
+
+  handleGameSelect(e) {
+    const gameid = e.currentTarget.getAttribute('data-gameid');
+    if (gameid) {
+      this.props.ViewGame(gameid);
+    }
   }
 
   /*
@@ -34,9 +52,9 @@ class PageGames extends Component {
   renderGames(games) {
     return games.map((game, index) => {
       return (
-        <div key={index} data-gameid={game.id}>
+        <button key={index} data-gameid={game.id} onClick={this.bindedHandleGameSelect}>
           <p>{game.name}</p>
-        </div>
+        </button>
       );
     });
   }
@@ -53,11 +71,12 @@ function mapStateToProps(state) {
     games: GetGames({ state })
   };
 }
-function mapDispatchToProps(dispatch) {
-  return {};
-}
+
+const storeActions = {
+  ViewGame
+};
 
 export default connect(
   mapStateToProps,
-  mapDispatchToProps
+  storeActions
 )(PageGames);
