@@ -55,8 +55,13 @@ class PageGames extends Component {
   renderGames(games) {
     return games.map((game, index) => {
       return (
-        <button key={index} data-gameid={game.id} onClick={this.bindedHandleGameSelect}>
-          <p>{game.name}</p>
+        <button
+          className="btn"
+          key={index}
+          data-gameid={game.id}
+          onClick={this.bindedHandleGameSelect}
+        >
+          {game.name}
         </button>
       );
     });

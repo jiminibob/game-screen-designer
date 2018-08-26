@@ -39,7 +39,9 @@ class PageHome extends Component {
     return (
       <div className="app-screen">
         <p>PageHome</p>
-        <button onClick={this.bindedHandleViewGames}>VIEW GAMES</button>
+        <button className="btn" onClick={this.bindedHandleViewGames}>
+          VIEW GAMES
+        </button>
       </div>
     );
   }
