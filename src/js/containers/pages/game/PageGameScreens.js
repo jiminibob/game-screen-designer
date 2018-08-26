@@ -59,7 +59,7 @@ class PageGameScreens extends Component {
     return screens.map((screen, index) => {
       return (
         <button key={index} data-screenid={screen.id} onClick={this.bindedHandleScreenSelect}>
-          {screen.name}
+          <p>{screen.name}</p>
         </button>
       );
     });
