@@ -1,27 +1,27 @@
 // grab libs
-import React from "react";
-import { render } from "react-dom";
-import { Provider } from "react-redux";
-import { composeWithDevTools } from "redux-devtools-extension";
-import { Route } from "react-router-dom";
+import React from 'react';
+import { render } from 'react-dom';
+import { Provider } from 'react-redux';
+import { composeWithDevTools } from 'redux-devtools-extension';
+import { Route } from 'react-router-dom';
 
 // middleware libs
-import { connectRouter, routerMiddleware } from "connected-react-router";
-import { applyMiddleware, createStore } from "redux";
-import invariant from "redux-immutable-state-invariant";
+import { connectRouter, routerMiddleware } from 'connected-react-router';
+import { applyMiddleware, createStore } from 'redux';
+import invariant from 'redux-immutable-state-invariant';
 
 // routing
-import { createHashHistory } from "history";
-import { ConnectedRouter } from "react-router-redux";
+import { createHashHistory } from 'history';
+import { ConnectedRouter } from 'react-router-redux';
 
 // grab main reducer
-import rootReducer from "store/RootReducer";
+import rootReducer from 'store/RootReducer';
 
 // grab some miFddleware
-import RootMiddleware from "store/RootMiddleware";
+import RootMiddleware from 'store/RootMiddleware';
 
 // main entry
-import AppRouter from "containers/routers/AppRouter";
+import AppRouter from 'containers/routers/AppRouter';
 
 export default () => {
   // set up history and routing
@@ -48,6 +48,6 @@ export default () => {
         <Route component={AppRouter} />
       </ConnectedRouter>
     </Provider>,
-    document.getElementById("app")
+    document.getElementById('app')
   );
 };

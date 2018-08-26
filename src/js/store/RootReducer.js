@@ -1,9 +1,8 @@
 // library stuff
-import { combineReducers } from "redux";
+import { combineReducers } from 'redux';
 
 // grab app reducers
-
-import { routerReducer } from "react-router-redux";
+import { routerReducer } from 'react-router-redux';
 
 // mash them together
 const rootReducer = combineReducers({

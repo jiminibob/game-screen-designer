@@ -1,6 +1,6 @@
 // import magical things
-import React, { Component } from "react";
-import { connect } from "react-redux";
+import React, { Component } from 'react';
+import { connect } from 'react-redux';
 
 /*
 ================================================================================
@@ -8,7 +8,7 @@ import { connect } from "react-redux";
 ================================================================================
 */
 
-class AppHome extends Component {
+class PageHome extends Component {
   constructor() {
     super();
   }
@@ -20,7 +20,7 @@ class AppHome extends Component {
   */
 
   render() {
-    return <div className="app-screen">HELLO APP</div>;
+    return <div className="app-screen">PageHome</div>;
   }
 }
 
@@ -40,4 +40,4 @@ function mapDispatchToProps(dispatch) {
 export default connect(
   mapStateToProps,
   mapDispatchToProps
-)(AppHome);
+)(PageHome);
