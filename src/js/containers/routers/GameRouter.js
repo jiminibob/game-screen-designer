@@ -6,6 +6,9 @@ import { Switch, Route, Redirect, withRouter } from 'react-router-dom';
 // constants
 import * as AppUrls from 'constants/AppUrls';
 
+// selectors
+import { GetGameById } from 'store/selectors/Games.selectors';
+
 // contaienrs
 import PageGame from 'containers/pages/PageGame';
 import PageGameAssets from 'containers/pages/PageGameAssets';
@@ -13,6 +16,7 @@ import PageGameAsset from 'containers/pages/PageGameAsset';
 import PageGameScreens from 'containers/pages/PageGameScreens';
 import PageGameScreen from 'containers/pages/PageGameScreen';
 import PageGameSettings from 'containers/pages/PageGameSettings';
+import PageGameNotFound from 'containers/pages/PageGameNotFound';
 
 /*
 ================================================================================
@@ -38,15 +42,8 @@ class GameRouter extends Component {
     =====================================================
     */
 
-    if (!this.props.gameid) {
-      return (
-        <Redirect
-          to={{
-            pathname: AppUrls.URL_GAMES,
-            state: { from: this.props.location }
-          }}
-        />
-      );
+    if (!this.props.valid) {
+      return <PageGameNotFound />;
     }
 
     /*
@@ -75,8 +72,9 @@ class GameRouter extends Component {
 */
 
 function mapStateToProps(state, props) {
+  const game = GetGameById({ state, gameid: props.match.params[AppUrls.URL_PROP_GAMEID] });
   return {
-    gameid: props.match.params[AppUrls.URL_PROP_GAMEID]
+    valid: game != undefined
   };
 }
 function mapDispatchToProps(dispatch) {
