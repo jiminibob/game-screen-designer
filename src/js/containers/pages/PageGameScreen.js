@@ -3,7 +3,10 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux';
 
 //constants
-import { URL_PROP_SCREENID } from 'constants/AppUrls';
+import { URL_PROP_SCREENID, URL_PROP_GAMEID } from 'constants/AppUrls';
+
+// selectors
+import { GetGameScreen } from 'store/selectors/Games.selectors';
 
 /*
 ================================================================================
@@ -23,7 +26,7 @@ class PageGameScreen extends Component {
   */
 
   render() {
-    return <div className="app-screen">PageGameScreen</div>;
+    return <div className="app-screen">{'PageGameScreen : ' + this.props.screen.name}</div>;
   }
 }
 
@@ -34,8 +37,10 @@ class PageGameScreen extends Component {
 */
 
 function mapStateToProps(state, props) {
+  const screenid = props.match.params[URL_PROP_SCREENID];
+  const gameid = props.match.params[URL_PROP_GAMEID];
   return {
-    screenid: props.match.params[URL_PROP_SCREENID]
+    screen: GetGameScreen({ state, gameid, screenid })
   };
 }
 function mapDispatchToProps(dispatch) {

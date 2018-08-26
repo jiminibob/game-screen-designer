@@ -10,6 +10,15 @@ export const GameModel = (data = {}) => {
     hasLevels: data.hasLevels || false,
     levelUnlockCondition: data.levelUnlockCondition || false,
     canSelectLevels: data.canSelectLevels || false,
-    canSelectCharacter: data.canSelectCharacter || false
+    canSelectCharacter: data.canSelectCharacter || false,
+    screens: data.screens || [
+      { id: 'loading', name: 'Loading' },
+      { id: 'landing', name: 'Landing' },
+      { id: 'instructions', name: 'Instructions' },
+      { id: 'gamehud', name: 'Game Hud' },
+      { id: 'gameend', name: 'Game End' },
+      { id: 'pause', name: 'Pause' },
+      { id: 'rotate', name: 'Rotate' }
+    ]
   };
 };

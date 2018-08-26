@@ -32,6 +32,9 @@ const NavMiddleware = ({ dispatch }) => (next) => (action) => {
     case NavActions.VIEW_GAME_SCREENS:
       redirect(dispatch, AppUrls.GetUrlGameScreens(action.payload));
       break;
+    case NavActions.VIEW_GAME_SCREEN:
+      redirect(dispatch, AppUrls.GetUrlGameScreen(action.payload.gameid, action.payload.screenid));
+      break;
   }
 };
 

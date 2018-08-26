@@ -6,3 +6,11 @@ export const GetGameById = ({ state, gameid }) => {
     return game.id === gameid;
   });
 };
+export const GetGameScreens = ({ state, gameid }) => {
+  return GetGameById({ state, gameid }).screens;
+};
+export const GetGameScreen = ({ state, gameid, screenid }) => {
+  return GetGameById({ state, gameid }).screens.find((screen) => {
+    return screen.id === screenid;
+  });
+};
