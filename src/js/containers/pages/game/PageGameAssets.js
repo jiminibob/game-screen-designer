@@ -4,7 +4,7 @@ import { connect } from 'react-redux';
 
 /*
 ================================================================================
-    base app class use to define to main layout
+  class
 ================================================================================
 */
 
@@ -33,11 +33,9 @@ class PageGameAssets extends Component {
 function mapStateToProps(state) {
   return {};
 }
-function mapDispatchToProps(dispatch) {
-  return {};
-}
+const StoreActions = {};
 
 export default connect(
   mapStateToProps,
-  mapDispatchToProps
+  StoreActions
 )(PageGameAssets);

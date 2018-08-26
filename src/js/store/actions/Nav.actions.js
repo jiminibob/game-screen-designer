@@ -1,3 +1,4 @@
+//constants
 export const VIEW_GAMES = '[NAV] VIEW_GAMES';
 export const VIEW_GAME = '[NAV] VIEW_GAME';
 export const VIEW_GAME_SETTINGS = '[NAV] VIEW_GAME_SETTINGS';
@@ -5,6 +6,7 @@ export const VIEW_GAME_ASSETS = '[NAV] VIEW_GAME_ASSETS';
 export const VIEW_GAME_SCREENS = '[NAV] VIEW_GAME_SCREENS';
 export const VIEW_GAME_SCREEN = '[NAV] VIEW_GAME_SCREEN';
 
+//actions
 export const ViewGames = () => ({
   type: VIEW_GAMES
 });

@@ -2,25 +2,24 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 
-// constants
-import { URL_PROP_GAMEID } from 'constants/AppUrls';
-
-//selectors
-import { GetGameScreens } from 'store/selectors/Games.selectors';
-
 // actions
-import { ViewGameScreen } from 'store/actions/Nav.actions';
+import { ViewGame } from 'store/actions/Nav.actions';
+
+// selectors
+import { GetGames } from 'store/selectors/Games.selectors';
 
 /*
 ================================================================================
-    base app class use to define to main layout
+  class
 ================================================================================
 */
 
-class PageGameScreens extends Component {
+class PageGames extends Component {
   constructor() {
     super();
-    this.bindedHandleScreenSelect = this.handleScreenSelect.bind(this);
+
+    // binded methods
+    this.bindedHandleGameSelect = this.handleGameSelect.bind(this);
   }
 
   /*
@@ -29,10 +28,12 @@ class PageGameScreens extends Component {
   ================================================================================
   */
 
-  handleScreenSelect(e) {
-    const screenid = e.currentTarget.getAttribute('data-screenid');
-    if (screenid) {
-      this.props.ViewGameScreen({ gameid: this.props.gameid, screenid });
+  handleGameSelect(e) {
+    // grab the screen id from button data attribute
+    const gameid = e.currentTarget.getAttribute('data-gameid');
+    if (gameid) {
+      // dispatch navigation request
+      this.props.ViewGame(gameid);
     }
   }
 
@@ -45,17 +46,17 @@ class PageGameScreens extends Component {
   render() {
     return (
       <div className="app-screen">
-        <p>PageGameScreens</p>
-        {this.renderGameSreens(this.props.gameScreens)}
+        <p>PageGames</p>
+        {this.renderGames(this.props.games)}
       </div>
     );
   }
 
-  renderGameSreens(screens) {
-    return screens.map((screen, index) => {
+  renderGames(games) {
+    return games.map((game, index) => {
       return (
-        <button key={index} data-screenid={screen.id} onClick={this.bindedHandleScreenSelect}>
-          <p>{screen.name}</p>
+        <button key={index} data-gameid={game.id} onClick={this.bindedHandleGameSelect}>
+          <p>{game.name}</p>
         </button>
       );
     });
@@ -64,23 +65,21 @@ class PageGameScreens extends Component {
 
 /*
 ================================================================================
-    hook up to redux
+  hook up to redux
 ================================================================================
 */
 
-function mapStateToProps(state, props) {
-  const gameid = props.match.params[URL_PROP_GAMEID];
+function mapStateToProps(state) {
   return {
-    gameid: gameid,
-    gameScreens: GetGameScreens({ state, gameid })
+    games: GetGames({ state })
   };
 }
 
 const storeActions = {
-  ViewGameScreen
+  ViewGame
 };
 
 export default connect(
   mapStateToProps,
   storeActions
-)(PageGameScreens);
+)(PageGames);

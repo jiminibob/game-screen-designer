@@ -14,7 +14,7 @@ import { GetGameById } from 'store/selectors/Games.selectors';
 
 /*
 ================================================================================
-    base app class use to define to main layout
+  class
 ================================================================================
 */
 
@@ -22,7 +22,10 @@ class PageGameSettings extends Component {
   constructor() {
     super();
 
+    // set form reference via ref
     this.form = false;
+
+    // binded methods
     this.bindedhandleFormUpdated = this.handleFormUpdated.bind(this);
   }
 
@@ -33,12 +36,15 @@ class PageGameSettings extends Component {
   */
 
   handleFormUpdated() {
+    // grab form settings and apply to updated data object
     const updatedSettings = {
       orientation: this.form.elements.orientation.value,
       hasLevels: this.form.elements.hasLevels.checked,
       canSelectLevels: this.form.elements.canSelectLevels.checked,
       canSelectCharacter: this.form.elements.canSelectCharacter.checked
     };
+
+    // push form data to update
     this.props.UpdateGameSettings({ gameid: this.props.game.id, updatedSettings });
   }
 

@@ -1,6 +1,10 @@
+// libs
 import shortid from 'shortid';
+
+// constants
 import { ORIENTATION_LANDSCAPE } from 'constants/AppConstants';
 
+// model
 export const GameModel = (data = {}) => {
   const id = data.id || shortid.generate();
   return {

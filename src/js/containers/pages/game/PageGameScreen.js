@@ -10,7 +10,7 @@ import { GetGameScreen } from 'store/selectors/Games.selectors';
 
 /*
 ================================================================================
-    base app class use to define to main layout
+  class
 ================================================================================
 */
 
@@ -37,17 +37,18 @@ class PageGameScreen extends Component {
 */
 
 function mapStateToProps(state, props) {
+  // grab game and screen id's from url props
   const screenid = props.match.params[URL_PROP_SCREENID];
   const gameid = props.match.params[URL_PROP_GAMEID];
+
   return {
     screen: GetGameScreen({ state, gameid, screenid })
   };
 }
-function mapDispatchToProps(dispatch) {
-  return {};
-}
+
+const storeActions = {};
 
 export default connect(
   mapStateToProps,
-  mapDispatchToProps
+  storeActions
 )(PageGameScreen);

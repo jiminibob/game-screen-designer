@@ -4,11 +4,11 @@ import { connect } from 'react-redux';
 
 /*
 ================================================================================
-    base app class use to define to main layout
+  class
 ================================================================================
 */
 
-class PageAppSettings extends Component {
+class PageGameAsset extends Component {
   constructor() {
     super();
   }
@@ -20,24 +20,22 @@ class PageAppSettings extends Component {
   */
 
   render() {
-    return <div className="app-screen">PageAppSettings</div>;
+    return <div className="app-screen">PageGameAsset</div>;
   }
 }
 
 /*
 ================================================================================
-    hook up to redux
+  hook up to redux
 ================================================================================
 */
 
-function mapStateToProps(state, props) {
+function mapStateToProps(state) {
   return {};
 }
-function mapDispatchToProps(dispatch) {
-  return {};
-}
+const StoreActions = {};
 
 export default connect(
   mapStateToProps,
-  mapDispatchToProps
-)(PageAppSettings);
+  StoreActions
+)(PageGameAsset);

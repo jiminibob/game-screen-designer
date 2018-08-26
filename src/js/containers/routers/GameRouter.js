@@ -1,7 +1,7 @@
 // import magical things
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
-import { Switch, Route, Redirect, withRouter } from 'react-router-dom';
+import { Switch, Route } from 'react-router-dom';
 
 // constants
 import * as AppUrls from 'constants/AppUrls';
@@ -10,17 +10,17 @@ import * as AppUrls from 'constants/AppUrls';
 import { GetGameById } from 'store/selectors/Games.selectors';
 
 // contaienrs
-import PageGame from 'containers/pages/PageGame';
-import PageGameAssets from 'containers/pages/PageGameAssets';
-import PageGameAsset from 'containers/pages/PageGameAsset';
-import PageGameScreens from 'containers/pages/PageGameScreens';
-import PageGameScreen from 'containers/pages/PageGameScreen';
-import PageGameSettings from 'containers/pages/PageGameSettings';
-import PageGameNotFound from 'containers/pages/PageGameNotFound';
+import PageGame from 'containers/pages/game/PageGame';
+import PageGameAssets from 'containers/pages/game/PageGameAssets';
+import PageGameAsset from 'containers/pages/game/PageGameAsset';
+import PageGameScreens from 'containers/pages/game/PageGameScreens';
+import PageGameScreen from 'containers/pages/game/PageGameScreen';
+import PageGameSettings from 'containers/pages/game/PageGameSettings';
+import PageGameNotFound from 'containers/pages/game/PageGameNotFound';
 
 /*
 ================================================================================
-    base app class use to define to main layout
+  class
 ================================================================================
 */
 
@@ -30,15 +30,15 @@ class GameRouter extends Component {
   }
 
   /*
-    ================================================================================
-       rendering
-    ================================================================================
-    */
+  ================================================================================
+    rendering
+  ================================================================================
+  */
 
   render() {
     /*
     =====================================================
-      No valid game selected - redirect to game select page
+      No valid game selected - redirect to game not found page
     =====================================================
     */
 
@@ -67,12 +67,16 @@ class GameRouter extends Component {
 
 /*
 ================================================================================
-    hook up to redux
+  hook up to redux
 ================================================================================
 */
 
 function mapStateToProps(state, props) {
-  const game = GetGameById({ state, gameid: props.match.params[AppUrls.URL_PROP_GAMEID] });
+  // grab gameid from url props
+  const gameid = props.match.params[AppUrls.URL_PROP_GAMEID];
+  // search for game
+  const game = GetGameById({ state, gameid });
+  // route is valid if game is found
   return {
     valid: game != undefined
   };

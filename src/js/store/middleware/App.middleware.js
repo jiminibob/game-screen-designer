@@ -6,6 +6,8 @@ import * as AppActions from 'store/actions/App.actions';
 import * as GamesActions from 'store/actions/Games.actions';
 
 // INTERNAL METHODS
+
+// start app boot, loads and sets releavant data needed to run
 const startBoot = ({ dispatch }) => {
   dispatch(GamesActions.SetGames(GenerateRandomGames()));
   dispatch(AppActions.CompleteBoot());

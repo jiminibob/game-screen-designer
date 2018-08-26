@@ -1,7 +1,7 @@
 // import magical things
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
-import { Switch, Route, Redirect, withRouter } from 'react-router-dom';
+import { Switch, Route, withRouter } from 'react-router-dom';
 
 // constants
 import * as AppUrls from 'constants/AppUrls';
@@ -12,14 +12,14 @@ import { GetBootstrapComplete } from 'store/selectors/App.selectors';
 // sub routers
 import GameRouter from './GameRouter';
 
-// contaienrs
-import PageHome from 'containers/pages/PageHome';
-import PageAppSettings from 'containers/pages/PageAppSettings';
-import PageGames from 'containers/pages/PageGames';
+// containers
+import PageHome from 'containers/pages/app/PageHome';
+import PageAppSettings from 'containers/pages/app/PageAppSettings';
+import PageGames from 'containers/pages/app/PageGames';
 
 /*
 ================================================================================
-    base app class use to define to main layout
+  class
 ================================================================================
 */
 
@@ -55,7 +55,7 @@ class AppRouter extends Component {
 
 /*
 ================================================================================
-    hook up to redux
+  hook up to redux
 ================================================================================
 */
 

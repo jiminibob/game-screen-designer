@@ -1,11 +1,12 @@
+// actions
 import * as GamesActions from 'store/actions/Games.actions';
 
-// BSAE STATE
+// default state
 const initState = {
   entries: []
 };
 
-// REDUCER
+// reducer
 const AppReducer = (state = initState, action) => {
   const nextState = {};
 
@@ -21,7 +22,7 @@ const AppReducer = (state = initState, action) => {
   return state;
 };
 
-// INTERNAL METHODS
+// reducer methods
 const updateGame = ({ games, gameid, updatedSettings }) => {
   return games.map((game) => {
     if (game.id === gameid) {

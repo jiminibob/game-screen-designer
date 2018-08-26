@@ -1,5 +1,7 @@
+// models
 import { GameModel } from 'store/models/Game.model';
 
+// methods
 export const GenerateRandomGames = () => {
   const results = [];
   while (results.length < 5) {

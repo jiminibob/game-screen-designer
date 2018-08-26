@@ -7,13 +7,15 @@ import * as NavActions from 'store/actions/Nav.actions';
 
 /*
 ================================================================================
-    base app class use to define to main layout
+  class
 ================================================================================
 */
 
 class PageGameNotFound extends Component {
   constructor() {
     super();
+
+    // binded methods
     this.bindedHandleViewGames = this.handleViewGames.bind(this);
   }
 
@@ -39,7 +41,7 @@ class PageGameNotFound extends Component {
 
 /*
 ================================================================================
-    hook up to redux
+  hook up to redux
 ================================================================================
 */
 

@@ -8,6 +8,8 @@ import * as NavActions from 'store/actions/Nav.actions';
 import * as AppUrls from 'constants/AppUrls';
 
 // INTERNAL METHODS
+
+// navigate to a new url
 const redirect = (dispatch, url) => {
   dispatch(push(url));
 };

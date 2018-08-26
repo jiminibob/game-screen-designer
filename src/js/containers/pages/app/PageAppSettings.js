@@ -2,30 +2,15 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 
-// actions
-import { ViewGames } from 'store/actions/Nav.actions';
-
 /*
 ================================================================================
-    base app class use to define to main layout
+  class
 ================================================================================
 */
 
-class PageHome extends Component {
+class PageAppSettings extends Component {
   constructor() {
     super();
-
-    this.bindedHandleViewGames = this.handleViewGames.bind(this);
-  }
-
-  /*
-  ================================================================================
-    USER INPUT
-  ================================================================================
-  */
-
-  handleViewGames() {
-    this.props.ViewGames();
   }
 
   /*
@@ -35,29 +20,22 @@ class PageHome extends Component {
   */
 
   render() {
-    return (
-      <div className="app-screen">
-        <p>PageHome</p>
-        <button onClick={this.bindedHandleViewGames}>VIEW GAMES</button>
-      </div>
-    );
+    return <div className="app-screen">PageAppSettings</div>;
   }
 }
 
 /*
 ================================================================================
-    hook up to redux
+  hook up to redux
 ================================================================================
 */
 
-function mapStateToProps(state) {
+function mapStateToProps(state, props) {
   return {};
 }
-const StoreActions = {
-  ViewGames
-};
+const StoreActions = {};
 
 export default connect(
   mapStateToProps,
   StoreActions
-)(PageHome);
+)(PageAppSettings);

@@ -13,7 +13,7 @@ import { GetGameById } from 'store/selectors/Games.selectors';
 
 /*
 ================================================================================
-    base app class use to define to main layout
+  class
 ================================================================================
 */
 
@@ -58,12 +58,14 @@ class PageGame extends Component {
 
 /*
 ================================================================================
-    hook up to redux
+  hook up to redux
 ================================================================================
 */
 
 function mapStateToProps(state, props) {
+  // grab game id from url prop
   const gameid = props.match.params[URL_PROP_GAMEID];
+
   return {
     game: GetGameById({ state, gameid })
   };
