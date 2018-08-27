@@ -23,6 +23,9 @@ export const GameModel = (data = {}) => {
       { id: 'gameend', name: 'Game End' },
       { id: 'pause', name: 'Pause' },
       { id: 'rotate', name: 'Rotate' }
-    ]
+    ],
+    imageAssets: [],
+    buttonAssets: [],
+    textAssets: []
   };
 };

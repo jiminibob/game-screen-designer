@@ -19,3 +19,7 @@ export const GetGameScreen = ({ state, gameid, screenid }) => {
     return screen.id === screenid;
   });
 };
+
+export const GetGameImageAssets = ({ state, gameid }) => {
+  return GetGameById({ state, gameid }).imageAssets;
+};
