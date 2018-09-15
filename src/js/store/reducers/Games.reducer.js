@@ -15,6 +15,9 @@ const AppReducer = (state = initState, action) => {
     case GamesActions.ADD_GAMES:
       nextState.entries = Utils.AddEntries({ entries: state.entries, newEntries: action.payload });
       return { ...state, ...nextState };
+    case GamesActions.ADD_GAME:
+      nextState.entries = Utils.AddEntry({ entries: state.entries, newEntry: action.payload });
+      return { ...state, ...nextState };
     case GamesActions.SET_GAMES:
       nextState.entries = action.payload;
       return { ...state, ...nextState };
