@@ -1,21 +1,30 @@
 // models
-import { ImageAssetModel } from 'store/models/Asset.model';
+import { TextureModel } from 'store/models/Texture.model';
 
 // actions
 import * as GamesActions from 'store/actions/Games.actions';
+import * as TexturesActions from 'store/actions/Textures.actions';
 
 // INTERNAL METHODS
 
 const uploadGameImageAssets = ({ dispatch, gameid, files }) => {
   readFiles(files).then((results) => {
-    const assets = results.map((file) => {
-      return ImageAssetModel({
-        src: file.data,
-        name: file.name
+    if (results.length > 1) {
+      const textureModels = results.map((result) => {
+        return new TextureModel({ src: result.data, name: result.name });
       });
-    });
 
-    dispatch(GamesActions.AddImageAssets({ gameid, assets }));
+      const textureids = textureModels.map((t) => {
+        return t.id;
+      });
+
+      dispatch(TexturesActions.AddTextures({ textureModels }));
+      dispatch(GamesActions.AddTextures({ gameid, textures: textureids }));
+    } else {
+      const textureModel = new TextureModel({ src: results[0].data, name: results[0].name });
+      dispatch(TexturesActions.AddTexture({ textureModel }));
+      dispatch(GamesActions.AddTexture({ gameid, textureid: textureModel.id }));
+    }
   });
 };
 

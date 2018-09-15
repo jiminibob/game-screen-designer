@@ -37,7 +37,7 @@ class PageGameSettings extends Component {
 
   handleFormUpdated() {
     // grab form settings and apply to updated data object
-    const updatedSettings = {
+    const updatedValues = {
       orientation: this.form.elements.orientation.value,
       hasLevels: this.form.elements.hasLevels.checked,
       canSelectLevels: this.form.elements.canSelectLevels.checked,
@@ -45,7 +45,7 @@ class PageGameSettings extends Component {
     };
 
     // push form data to update
-    this.props.UpdateGameSettings({ gameid: this.props.game.id, updatedSettings });
+    this.props.UpdateGameSettings({ gameid: this.props.game.id, updatedValues });
   }
 
   /*

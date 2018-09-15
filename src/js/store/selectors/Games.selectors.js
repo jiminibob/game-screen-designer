@@ -1,17 +1,16 @@
 // selectors
+import { GetScreensAsArray } from 'store/selectors/Screens.selectors';
 
 export const GetGames = ({ state }) => {
   return state.games.entries;
 };
 
 export const GetGameById = ({ state, gameid }) => {
-  return GetGames({ state }).find((game) => {
-    return game.id === gameid;
-  });
+  return state.games.entries[gameid];
 };
 
 export const GetGameScreens = ({ state, gameid }) => {
-  return GetGameById({ state, gameid }).screens;
+  return GetScreensAsArray({ state, screens: GetGameById({ state, gameid }).screens });
 };
 
 export const GetGameScreen = ({ state, gameid, screenid }) => {
