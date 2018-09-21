@@ -6,10 +6,10 @@ import * as GamesActions from 'store/actions/Games.actions';
 
 // start app boot, loads and sets releavant data needed to run
 const startBoot = ({ dispatch }) => {
-  let i = 5;
-  while (i--) {
-    dispatch(GamesActions.CreateNewGame());
-  }
+  // let i = 5;
+  // while (i--) {
+  //   dispatch(GamesActions.CreateNewGame());
+  // }
   dispatch(AppActions.CompleteBoot());
 };
 

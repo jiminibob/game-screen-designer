@@ -3,6 +3,9 @@ export const URL_HOME = '/';
 export const URL_GAMES = '/games/';
 export const URL_APP_SETTINGS = '/settings/';
 
+// MODALS
+export const MODAL_CREATE_GAME = 'MODAL_CREATE_GAME';
+
 // URL PROPS
 export const URL_PROP_GAMEID = 'gameid';
 export const URL_PROP_ASSETID = 'assetid';

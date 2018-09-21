@@ -1,4 +1,4 @@
-@import "./libs/reset.scss";
+@import './libs/reset.scss';
 
 html,
 body {
@@ -21,4 +21,11 @@ body {
   height: 100%;
   margin: 0;
   padding: 0;
+
+  &.modal {
+    position: absolute;
+    top: 0;
+    left: 0;
+    background: rgba(0, 0, 0, 0.5);
+  }
 }

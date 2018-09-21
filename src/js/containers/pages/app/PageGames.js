@@ -3,7 +3,7 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux';
 
 // actions
-import { ViewGame } from 'store/actions/Nav.actions';
+import { ViewGame, ViewCreateGame } from 'store/actions/Nav.actions';
 
 // selectors
 import { GetGames } from 'store/selectors/Games.selectors';
@@ -20,6 +20,7 @@ class PageGames extends Component {
 
     // binded methods
     this.bindedHandleGameSelect = this.handleGameSelect.bind(this);
+    this.bindedCreateNewGame = this.handleCreateNewGame.bind(this);
   }
 
   /*
@@ -27,6 +28,10 @@ class PageGames extends Component {
     user input
   ================================================================================
   */
+
+  handleCreateNewGame() {
+    this.props.ViewCreateGame();
+  }
 
   handleGameSelect(e) {
     // grab the screen id from button data attribute
@@ -47,7 +52,8 @@ class PageGames extends Component {
     return (
       <div className="app-screen">
         <p>PageGames</p>
-        {this.renderGames(this.props.games)}
+        <button onClick={this.bindedCreateNewGame}>NEW GAME</button>
+        {/* {this.renderGames(this.props.games)} */}
       </div>
     );
   }
@@ -76,7 +82,8 @@ function mapStateToProps(state) {
 }
 
 const storeActions = {
-  ViewGame
+  ViewGame,
+  ViewCreateGame
 };
 
 export default connect(

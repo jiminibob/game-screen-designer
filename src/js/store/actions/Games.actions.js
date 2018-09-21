@@ -1,3 +1,6 @@
+// App constant
+import { ORIENTATION_LANDSCAPE } from 'constants/AppConstants';
+
 //constants
 export const ADD_GAMES = '[GAMES] ADD_GAMES';
 export const ADD_GAME = '[GAMES] ADD_GAME';
@@ -18,8 +21,9 @@ export const AddGame = ({ gameModel }) => ({
   payload: gameModel
 });
 
-export const CreateNewGame = () => ({
-  type: CREATE_NEW_GAME
+export const CreateNewGame = ({ name, orientation = ORIENTATION_LANDSCAPE }) => ({
+  type: CREATE_NEW_GAME,
+  payload: { name, orientation }
 });
 
 export const UpdateGameSettings = ({ gameid, updatedValues }) => ({

@@ -16,6 +16,7 @@ import GameRouter from './GameRouter';
 import PageHome from 'containers/pages/app/PageHome';
 import PageSettings from 'containers/pages/app/PageSettings';
 import PageGames from 'containers/pages/app/PageGames';
+import ModalGameAdd from 'containers/pages/app/ModalGameAdd';
 
 /*
 ================================================================================
@@ -35,6 +36,9 @@ class AppRouter extends Component {
   */
 
   render() {
+    const { location } = this.props;
+    const isModal = location.state && location.state.modal;
+
     if (this.props.bootComplete) {
       return (
         <div className="app-wrapper">
@@ -44,12 +48,21 @@ class AppRouter extends Component {
             <Route exact path={AppUrls.URL_GAMES} component={PageGames} />
             <Route path={AppUrls.GetUrlGame()} component={GameRouter} />
           </Switch>
+          {isModal && this.renderModal(location.state.modal)}
         </div>
       );
     }
 
     // boot had not finished, app is not ready
     return null;
+  }
+
+  renderModal(modal) {
+    return (
+      <Switch location={{ ...this.props.location, ...{ pathname: modal } }}>
+        <Route exact path={AppUrls.MODAL_CREATE_GAME} component={ModalGameAdd} />
+      </Switch>
+    );
   }
 }
 
@@ -64,13 +77,12 @@ function mapStateToProps(state, props) {
     bootComplete: GetBootstrapComplete({ state })
   };
 }
-function mapDispatchToProps(dispatch) {
-  return {};
-}
+
+const storeActions = {};
 
 export default withRouter(
   connect(
     mapStateToProps,
-    mapDispatchToProps
+    storeActions
   )(AppRouter)
 );

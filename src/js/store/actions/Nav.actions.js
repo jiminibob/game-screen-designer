@@ -6,6 +6,8 @@ export const VIEW_GAME_ASSETS = '[NAV] VIEW_GAME_ASSETS';
 export const VIEW_GAME_SCREENS = '[NAV] VIEW_GAME_SCREENS';
 export const VIEW_GAME_SCREEN = '[NAV] VIEW_GAME_SCREEN';
 
+export const VIEW_CREATE_GAME = '[NAV] VIEW_CREATE_GAME';
+
 //actions
 export const ViewGames = () => ({
   type: VIEW_GAMES
@@ -32,4 +34,7 @@ export const ViewGameScreens = (gameid) => ({
 export const ViewGameScreen = ({ gameid, screenid }) => ({
   type: VIEW_GAME_SCREEN,
   payload: { gameid, screenid }
+});
+export const ViewCreateGame = () => ({
+  type: VIEW_CREATE_GAME
 });
