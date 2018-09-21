@@ -4,7 +4,8 @@ import * as Utils from 'store/reducers/utils.reducer';
 
 // default state
 const initState = {
-  entries: []
+  entries: [],
+  imageAssets: []
 };
 
 // reducer
@@ -34,24 +35,53 @@ const AppReducer = (state = initState, action) => {
     case GamesActions.ADD_TEXTURES:
       nextState.entries = AddTexturesToGameEntry({ state, ...action.payload });
       return { ...state, ...nextState };
+    case GamesActions.ADD_IMAGE_ASSETS:
+      // nextState.entries = AddImageAssetsToGameEntry({ state, ...action.payload });
+      return { ...state, ...AddImageAssetsToGameEntry({ state, ...action.payload }) };
   }
 
   return state;
 };
 
 const AddTextureToGameEntry = ({ state, gameid, textureid }) => {
-  const game = { ...state.entries[gameid] };
-  game.textures = [...game.textures, textureid];
-  const entries = { ...state.entries };
-  entries[gameid] = game;
-  return entries;
+  const game = state.entries[gameid];
+  const updated = { textures: [...game.textures, textureid] };
+  return Utils.UpdateEntryValues({
+    entries: state.entries,
+    entryid: gameid,
+    updatedValues: updated
+  });
 };
-const AddTexturesToGameEntry = ({ state, gameid, textures }) => {
-  const game = { ...state.entries[gameid] };
-  game.textures = [...game.textures, ...textures];
-  const entries = { ...state.entries };
-  entries[gameid] = game;
-  return entries;
+const AddTexturesToGameEntry = ({ state, gameid, textureids }) => {
+  const game = state.entries[gameid];
+  const updated = { textures: [...game.textures, ...textureids] };
+  return Utils.UpdateEntryValues({
+    entries: state.entries,
+    entryid: gameid,
+    updatedValues: updated
+  });
+};
+const AddImageAssetsToGameEntry = ({ state, gameid, assets }) => {
+  const game = state.entries[gameid];
+  const updated = {
+    imageAssets: [
+      ...game.imageAssets,
+      ...assets.map((asset) => {
+        return asset.id;
+      })
+    ]
+  };
+  const entries = Utils.UpdateEntryValues({
+    entries: state.entries,
+    entryid: gameid,
+    updatedValues: updated
+  });
+  const imageAssets = Utils.AddEntries({
+    entries: state.imageAssets,
+    newEntries: assets
+  });
+
+  return { entries, imageAssets };
 };
 
 export default AppReducer;

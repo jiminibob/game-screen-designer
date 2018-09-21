@@ -46,7 +46,7 @@ export const AddTexture = ({ gameid, textureid }) => ({
   payload: { gameid, textureid }
 });
 
-export const AddTextures = ({ gameid, textures }) => ({
+export const AddTextures = ({ gameid, textureids }) => ({
   type: ADD_TEXTURES,
-  payload: { gameid, textures }
+  payload: { gameid, textureids }
 });

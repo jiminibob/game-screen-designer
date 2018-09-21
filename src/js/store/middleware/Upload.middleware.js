@@ -19,7 +19,15 @@ const uploadGameImageAssets = ({ dispatch, gameid, files }) => {
       });
 
       dispatch(TexturesActions.AddTextures({ textureModels }));
-      dispatch(GamesActions.AddTextures({ gameid, textures: textureids }));
+      dispatch(GamesActions.AddTextures({ gameid, textureids }));
+      dispatch(
+        GamesActions.AddImageAssets({
+          gameid,
+          assets: textureids.map((t, i) => {
+            return { textureid: t, id: i, name: 'imageasset' + i };
+          })
+        })
+      );
     } else {
       const textureModel = new TextureModel({ src: results[0].data, name: results[0].name });
       dispatch(TexturesActions.AddTexture({ textureModel }));

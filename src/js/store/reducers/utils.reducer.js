@@ -7,10 +7,7 @@ export const AddEntry = ({ entries, newEntry }) => {
 export const AddEntries = ({ entries, newEntries }) => {
   return {
     ...entries,
-    ...newEntries.reduce((obj, entry) => {
-      obj[entry.id] = { ...entry };
-      return obj;
-    }, {})
+    ...ArrayToKeyValue({ items: newEntries })
   };
 };
 
@@ -31,9 +28,7 @@ export const UpdateEntryValues = ({ entries, entryid, updatedValues }) => {
 };
 
 export const GetEntryById = ({ entries, entryid }) => {
-  return entries.find((entry) => {
-    return entry.id === entryid;
-  });
+  return FindByProp({ items: entries, prop: 'id', value: entryid });
 };
 
 export const GetEntryAsNew = ({ entries, entryid }) => {
@@ -46,4 +41,18 @@ export const GetEntryAsNew = ({ entries, entryid }) => {
 export const GetEntryPropValue = ({ entries, entryid, propName }) => {
   const entry = GetEntryById({ entries, entryid });
   return entry[propName];
+};
+
+// SHORTCUTS
+export const ArrayToKeyValue = ({ items, propname = 'id' }) => {
+  return items.reduce((obj, item) => {
+    obj[item[propname]] = item;
+    return obj;
+  }, {});
+};
+
+export const FindByProp = ({ items, prop, value }) => {
+  return items.find((item) => {
+    return item[prop] === value;
+  });
 };
