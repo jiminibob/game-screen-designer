@@ -6,7 +6,7 @@ import { connect } from 'react-redux';
 import { URL_PROP_SCREENID, URL_PROP_GAMEID } from 'constants/AppUrls';
 
 // selectors
-import { GetGameScreen } from 'store/selectors/Games.selectors';
+import { GetScreen } from 'store/selectors/Screens.selectors';
 
 /*
 ================================================================================
@@ -37,12 +37,8 @@ class PageGameScreen extends Component {
 */
 
 function mapStateToProps(state, props) {
-  // grab game and screen id's from url props
-  const screenid = props.match.params[URL_PROP_SCREENID];
-  const gameid = props.match.params[URL_PROP_GAMEID];
-
   return {
-    screen: GetGameScreen({ state, gameid, screenid })
+    screen: GetScreen({ state, screenid: props.match.params[URL_PROP_SCREENID] })
   };
 }
 
