@@ -2,7 +2,15 @@
 import { GetScreensAsArray } from 'store/selectors/Screens.selectors';
 
 export const GetGames = ({ state }) => {
-  return state.games.entries;
+  return Object.keys(state.games.entries).map((key) => {
+    return GetGameById({ state, gameid: key });
+  });
+};
+
+export const GetGamesAsArray = ({ state }) => {
+  return Object.keys(state.games.entries).map((key) => {
+    return GetGames({ state, key });
+  });
 };
 
 export const GetGameById = ({ state, gameid }) => {

@@ -53,7 +53,7 @@ class PageGames extends Component {
       <div className="app-screen">
         <p>PageGames</p>
         <button onClick={this.bindedCreateNewGame}>NEW GAME</button>
-        {/* {this.renderGames(this.props.games)} */}
+        {this.renderGames(this.props.games)}
       </div>
     );
   }
