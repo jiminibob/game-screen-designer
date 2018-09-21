@@ -22,5 +22,7 @@ export const GetGameScreens = ({ state, gameid }) => {
 };
 
 export const GetGameImageAssets = ({ state, gameid }) => {
-  return GetGameById({ state, gameid }).imageAssets;
+  return GetGameById({ state, gameid }).imageAssets.map((assetid) => {
+    return state.games.imageAssets[assetid];
+  });
 };
