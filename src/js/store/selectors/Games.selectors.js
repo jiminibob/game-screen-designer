@@ -18,7 +18,7 @@ export const GetGameById = ({ state, gameid }) => {
 };
 
 export const GetGameScreens = ({ state, gameid }) => {
-  return GetScreensAsArray({ state, screens: GetGameById({ state, gameid }).screens });
+  return GetScreensAsArray({ state, screenids: GetGameById({ state, gameid }).screens });
 };
 
 export const GetGameScreen = ({ state, gameid, screenid }) => {

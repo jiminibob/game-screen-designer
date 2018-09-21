@@ -14,7 +14,7 @@ import * as NavActions from 'store/actions/Nav.actions';
 const createGame = ({ dispatch, name, orientation }) => {
   // create mandatory game screens
   const screenModels = AppConstants.MANDATORY_SCREENS.map((screenType) => {
-    return new ScreenModel({ screenType });
+    return new ScreenModel({ screenType, name: screenType });
   });
 
   dispatch(ScreensActions.AddScreens({ screenModels }));

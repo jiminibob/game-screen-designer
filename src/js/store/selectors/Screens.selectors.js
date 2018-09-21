@@ -2,9 +2,10 @@
 export const GetScreensAsArray = ({ state, screenids }) => {
   if (screenids) {
     // filter by id
-    return screenids.map((screenid) => {
+    const screens = screenids.map((screenid) => {
       return GetScreen({ state, screenid });
     });
+    return screens;
   } else {
     // if no id's map and return all screens as array
     return Object.keys(state.screens.entries).map((key) => {
@@ -31,5 +32,5 @@ export const GetScreens = ({ state, screenids }) => {
 };
 
 export const GetScreen = ({ state, screenid }) => {
-  return { ...state.screens[screenid] };
+  return state.screens.entries[screenid];
 };
