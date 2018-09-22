@@ -4,7 +4,7 @@ import { connect } from 'react-redux';
 
 // acitons
 import { CreateNewGame } from 'store/actions/Games.actions';
-import { ViewGames } from 'store/actions/Nav.actions';
+import { ViewGames, CloseOpenModal } from 'store/actions/Nav.actions';
 
 /*
 ================================================================================
@@ -12,7 +12,7 @@ import { ViewGames } from 'store/actions/Nav.actions';
 ================================================================================
 */
 
-class PageHome extends Component {
+class ModalGameAdd extends Component {
   constructor() {
     super();
     this.gameNameInput;
@@ -31,7 +31,7 @@ class PageHome extends Component {
     this.props.CreateNewGame({ name });
   }
   handleCancelCreate() {
-    this.props.ViewGames();
+    this.props.CloseOpenModal();
   }
 
   /*
@@ -43,10 +43,12 @@ class PageHome extends Component {
   render() {
     return (
       <div className="app-screen modal">
-        <p>ADD GAME</p>
-        <input type="text" placeholder="enter game name" ref={(r) => (this.gameNameInput = r)} />
-        <button onClick={this.bindedHandleCreateGame}>Create Game</button>
-        <button onClick={this.bindedHandleCancelCreate}>cancel</button>
+        <div className="modal-content">
+          <p>ADD GAME</p>
+          <input type="text" placeholder="enter game name" ref={(r) => (this.gameNameInput = r)} />
+          <button onClick={this.bindedHandleCreateGame}>Create Game</button>
+          <button onClick={this.bindedHandleCancelCreate}>cancel</button>
+        </div>
       </div>
     );
   }
@@ -61,9 +63,9 @@ class PageHome extends Component {
 function mapStateToProps(state) {
   return {};
 }
-const StoreActions = { CreateNewGame, ViewGames };
+const StoreActions = { CreateNewGame, ViewGames, CloseOpenModal };
 
 export default connect(
   mapStateToProps,
   StoreActions
-)(PageHome);
+)(ModalGameAdd);

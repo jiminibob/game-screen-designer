@@ -17,6 +17,7 @@ import PageGameScreens from 'containers/pages/game/PageGameScreens';
 import PageGameScreen from 'containers/pages/game/PageGameScreen';
 import PageGameSettings from 'containers/pages/game/PageGameSettings';
 import PageGameNotFound from 'containers/pages/game/PageGameNotFound';
+import ModalAddImageAsset from 'containers/pages/game/ModalAddImageAsset';
 
 /*
 ================================================================================
@@ -52,16 +53,31 @@ class GameRouter extends Component {
     =====================================================
     */
 
+    const { location } = this.props;
+    const isModal = location.state && location.state.modal;
+
     return (
-      <Switch>
-        <Route exact path={AppUrls.GetUrlGame()} component={PageGame} />
-        <Route exact path={AppUrls.GetUrlGameAssets()} component={PageGameAssets} />
-        <Route exact path={AppUrls.GetUrlGameAsset()} component={PageGameAsset} />
-        <Route exact path={AppUrls.GetUrlGameScreens()} component={PageGameScreens} />
-        <Route exact path={AppUrls.GetUrlGameScreen()} component={PageGameScreen} />
-        <Route exact path={AppUrls.GetUrlGameSettings()} component={PageGameSettings} />
-      </Switch>
+      <span>
+        <Switch>
+          <Route exact path={AppUrls.GetUrlGame()} component={PageGame} />
+          <Route exact path={AppUrls.GetUrlGameAssets()} component={PageGameAssets} />
+          <Route exact path={AppUrls.GetUrlGameAsset()} component={PageGameAsset} />
+          <Route exact path={AppUrls.GetUrlGameScreens()} component={PageGameScreens} />
+          <Route exact path={AppUrls.GetUrlGameScreen()} component={PageGameScreen} />
+          <Route exact path={AppUrls.GetUrlGameSettings()} component={PageGameSettings} />
+        </Switch>
+        {isModal && this.renderModal(location.state.modal)}
+      </span>
     );
+  }
+
+  renderModal(modal) {
+    switch (modal) {
+      case AppUrls.MODAL_CREATE_IMAGE_ASSET:
+        return <Route component={ModalAddImageAsset} />;
+    }
+
+    return null;
   }
 }
 

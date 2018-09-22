@@ -6,6 +6,9 @@ import { connect } from 'react-redux';
 import { ORIENTATION_LANDSCAPE } from 'constants/AppConstants';
 import { URL_PROP_SCREENID, URL_PROP_GAMEID } from 'constants/AppUrls';
 
+// actions
+import { ViewCreateImageAsset } from 'store/actions/Nav.actions';
+
 // selectors
 import { GetScreen } from 'store/selectors/Screens.selectors';
 import { GetGameById } from 'store/selectors/Games.selectors';
@@ -20,6 +23,12 @@ import { GetGameImageAssets } from 'store/selectors/Games.selectors';
 class PageGameScreen extends Component {
   constructor() {
     super();
+
+    this.bindedHandleCreateImageAsset = this.handleCreateImageAsset.bind(this);
+  }
+
+  handleCreateImageAsset() {
+    this.props.ViewCreateImageAsset();
   }
 
   /*
@@ -37,6 +46,7 @@ class PageGameScreen extends Component {
           width={this.props.game.orientation === ORIENTATION_LANDSCAPE ? 1280 : 720}
           height={this.props.game.orientation === ORIENTATION_LANDSCAPE ? 720 : 1280}
         />
+        <button onClick={this.bindedHandleCreateImageAsset}>Create Image Asset</button>
         {this.renderImageAssets(this.props.imageAssets)}
       </div>
     );
@@ -71,7 +81,9 @@ function mapStateToProps(state, props) {
   };
 }
 
-const storeActions = {};
+const storeActions = {
+  ViewCreateImageAsset
+};
 
 export default connect(
   mapStateToProps,

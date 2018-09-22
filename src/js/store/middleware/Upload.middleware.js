@@ -3,7 +3,6 @@ import { TextureModel } from 'store/models/Texture.model';
 
 // actions
 import * as GamesActions from 'store/actions/Games.actions';
-import * as TexturesActions from 'store/actions/Textures.actions';
 
 // INTERNAL METHODS
 
@@ -18,8 +17,8 @@ const uploadGameImageAssets = ({ dispatch, gameid, files }) => {
         return t.id;
       });
 
-      dispatch(TexturesActions.AddTextures({ textureModels }));
-      dispatch(GamesActions.AddTextures({ gameid, textureids }));
+      // dispatch(TexturesActions.AddTextures({ textureModels }));
+      dispatch(GamesActions.AddTextures({ gameid, textureModels }));
       dispatch(
         GamesActions.AddImageAssets({
           gameid,
@@ -30,7 +29,7 @@ const uploadGameImageAssets = ({ dispatch, gameid, files }) => {
       );
     } else {
       const textureModel = new TextureModel({ src: results[0].data, name: results[0].name });
-      dispatch(TexturesActions.AddTexture({ textureModel }));
+      // dispatch(TexturesActions.AddTexture({ textureModel }));
       dispatch(GamesActions.AddTexture({ gameid, textureid: textureModel.id }));
     }
   });

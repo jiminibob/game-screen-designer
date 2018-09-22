@@ -7,6 +7,8 @@ export const VIEW_GAME_SCREENS = '[NAV] VIEW_GAME_SCREENS';
 export const VIEW_GAME_SCREEN = '[NAV] VIEW_GAME_SCREEN';
 
 export const VIEW_CREATE_GAME = '[NAV] VIEW_CREATE_GAME';
+export const VIEW_CREATE_IMAGE_ASSET = '[NAV] VIEW_CREATE_IMAGE_ASSET';
+export const CLOSE_MODAL = '[NAV] CLOSE_MODAL';
 
 //actions
 export const ViewGames = () => ({
@@ -37,4 +39,10 @@ export const ViewGameScreen = ({ gameid, screenid }) => ({
 });
 export const ViewCreateGame = () => ({
   type: VIEW_CREATE_GAME
+});
+export const ViewCreateImageAsset = () => ({
+  type: VIEW_CREATE_IMAGE_ASSET
+});
+export const CloseOpenModal = () => ({
+  type: CLOSE_MODAL
 });

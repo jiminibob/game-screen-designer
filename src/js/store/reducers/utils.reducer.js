@@ -56,3 +56,15 @@ export const FindByProp = ({ items, prop, value }) => {
     return item[prop] === value;
   });
 };
+
+export const MapByProp = ({ items, prop }) => {
+  return items.map((item) => {
+    return item[prop];
+  });
+};
+
+export const KeyValuesToArray = ({ items }) => {
+  return Object.keys(items).map((key) => {
+    return items[key];
+  });
+};

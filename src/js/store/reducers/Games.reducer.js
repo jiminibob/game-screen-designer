@@ -5,83 +5,85 @@ import * as Utils from 'store/reducers/utils.reducer';
 // default state
 const initState = {
   entries: [],
-  imageAssets: []
+  textures: {},
+  imageAssets: {},
+  buttonAssets: {}
 };
 
 // reducer
-const AppReducer = (state = initState, action) => {
+const GamesReducer = (state = initState, action) => {
   const nextState = {};
 
   switch (action.type) {
     case GamesActions.ADD_GAMES:
-      nextState.entries = Utils.AddEntries({ entries: state.entries, newEntries: action.payload });
-      return { ...state, ...nextState };
-    case GamesActions.ADD_GAME:
-      nextState.entries = Utils.AddEntry({ entries: state.entries, newEntry: action.payload });
-      return { ...state, ...nextState };
     case GamesActions.SET_GAMES:
-      nextState.entries = action.payload;
-      return { ...state, ...nextState };
+      return { ...state, ...AddGames({ state, games: action.payload }) };
+    case GamesActions.ADD_GAME:
+      return { ...state, ...AddGame({ state, game: action.payload }) };
     case GamesActions.UPDATE_GAME_SETTINGS:
-      nextState.entries = Utils.UpdateEntryValues({
-        entries: state.entries,
-        entryid: action.payload.gameid,
-        updatedValues: action.payload.updatedValues
-      });
-      return { ...state, ...nextState };
-    case GamesActions.ADD_TEXTURE:
-      nextState.entries = AddTextureToGameEntry({ state, ...action.payload });
-      return { ...state, ...nextState };
+      return { ...state, ...UpdateGameSettings({ state, ...action.payload }) };
     case GamesActions.ADD_TEXTURES:
-      nextState.entries = AddTexturesToGameEntry({ state, ...action.payload });
-      return { ...state, ...nextState };
+      return { ...state, ...AddTexturesToGame({ state, ...action.payload }) };
     case GamesActions.ADD_IMAGE_ASSETS:
-      // nextState.entries = AddImageAssetsToGameEntry({ state, ...action.payload });
-      return { ...state, ...AddImageAssetsToGameEntry({ state, ...action.payload }) };
+      return { ...state, ...AddImageAssetsToGame({ state, ...action.payload }) };
   }
 
   return state;
 };
 
-const AddTextureToGameEntry = ({ state, gameid, textureid }) => {
-  const game = state.entries[gameid];
-  const updated = { textures: [...game.textures, textureid] };
-  return Utils.UpdateEntryValues({
-    entries: state.entries,
-    entryid: gameid,
-    updatedValues: updated
-  });
+const AddGame = ({ state, game }) => {
+  return { entries: Utils.AddEntry({ entries: state.entries, newEntry: game }) };
 };
-const AddTexturesToGameEntry = ({ state, gameid, textureids }) => {
-  const game = state.entries[gameid];
-  const updated = { textures: [...game.textures, ...textureids] };
-  return Utils.UpdateEntryValues({
-    entries: state.entries,
-    entryid: gameid,
-    updatedValues: updated
-  });
+
+const AddGames = ({ state, games }) => {
+  return { entries: Utils.AddEntries({ entries: state.entries, newEntries: games }) };
 };
-const AddImageAssetsToGameEntry = ({ state, gameid, assets }) => {
-  const game = state.entries[gameid];
-  const updated = {
-    imageAssets: [
-      ...game.imageAssets,
-      ...assets.map((asset) => {
-        return asset.id;
-      })
-    ]
-  };
+
+const UpdateGameSettings = ({ state, gameid, updatedValues }) => {
   const entries = Utils.UpdateEntryValues({
     entries: state.entries,
     entryid: gameid,
-    updatedValues: updated
+    updatedValues: updatedValues
   });
-  const imageAssets = Utils.AddEntries({
-    entries: state.imageAssets,
-    newEntries: assets
+  return { entries };
+};
+
+const AddTexturesToGame = ({ state, gameid, textureModels }) => {
+  // add to textures
+  const textures = Utils.AddEntries({ entries: state.textures, newEntries: textureModels });
+
+  // update game textures
+  const game = state.entries[gameid];
+  const gameTextures = [...game.textures, ...Utils.MapByProp({ items: textureModels, prop: 'id' })];
+
+  // update entries
+  const entries = Utils.UpdateEntryValues({
+    entries: state.entries,
+    entryid: gameid,
+    updatedValues: { textures: gameTextures }
   });
 
+  // return results
+  return { entries, textures };
+};
+
+const AddImageAssetsToGame = ({ state, gameid, assets }) => {
+  // update image assets
+  const imageAssets = Utils.AddEntries({ entries: state.imageAssets, newEntries: assets });
+
+  // update game image assets
+  const game = state.entries[gameid];
+  const updatedImages = [...game.imageAssets, ...Utils.MapByProp({ items: assets, prop: 'id' })];
+
+  // update entries
+  const entries = Utils.UpdateEntryValues({
+    entries: state.entries,
+    entryid: gameid,
+    updatedValues: { imageAssets: updatedImages }
+  });
+
+  // return results;
   return { entries, imageAssets };
 };
 
-export default AppReducer;
+export default GamesReducer;

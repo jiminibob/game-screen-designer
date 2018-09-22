@@ -53,9 +53,18 @@ const NavMiddleware = ({ dispatch, getState }) => (next) => (action) => {
       break;
     case NavActions.VIEW_CREATE_GAME:
       setUrlState(dispatch, {
-        pathname: getState().route.location.pathname,
+        pathname: state.route.location.pathname,
         state: { modal: AppUrls.MODAL_CREATE_GAME }
       });
+      break;
+    case NavActions.VIEW_CREATE_IMAGE_ASSET:
+      setUrlState(dispatch, {
+        pathname: state.route.location.pathname,
+        state: { modal: AppUrls.MODAL_CREATE_IMAGE_ASSET }
+      });
+      break;
+    case NavActions.CLOSE_MODAL:
+      setUrlState(dispatch, state.route.location.pathname);
       break;
   }
 };

@@ -5,7 +5,6 @@ import { routerReducer } from 'react-router-redux';
 // grab app reducers
 import app from 'store/reducers/App.reducer';
 import games from 'store/reducers/Games.reducer';
-import textures from 'store/reducers/Textures.reducer';
 import screens from 'store/reducers/Screens.reducer';
 
 // mash them together
@@ -13,7 +12,6 @@ const rootReducer = combineReducers({
   app,
   games,
   screens,
-  textures,
   route: routerReducer
 });
 

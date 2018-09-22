@@ -4,16 +4,15 @@ import { connect } from 'react-redux';
 
 // constants
 import { URL_PROP_GAMEID } from 'constants/AppUrls';
-import { ACCEPTED_IMAGE_TYPES } from 'constants/AppConstants';
 
 // actions
-import { UploadImageAssets } from 'store/actions/Games.actions';
+import { ViewCreateImageAsset } from 'store/actions/Nav.actions';
 
 // selectors
-import { GetGameImageAssets } from 'store/selectors/Games.selectors';
+import { GetGameTextures } from 'store/selectors/Games.selectors';
 
-// components
-import Dropzone from 'react-dropzone';
+// commponents
+import GameTexturesList from 'components/GameTexturesList';
 
 /*
 ================================================================================
@@ -28,7 +27,7 @@ class PageGameAssets extends Component {
   }
 
   handleUploadAssets(files) {
-    this.props.UploadImageAssets({ files, gameid: this.props.gameid });
+    this.props.ViewCreateImageAsset();
   }
 
   /*
@@ -38,11 +37,12 @@ class PageGameAssets extends Component {
   */
 
   render() {
+    console.log(this.props.gameTextures);
     return (
-      <div className="app-screen">
+      <div className="app-screen game-assets">
         <p>PageGameAssets</p>
-        <Dropzone accept={ACCEPTED_IMAGE_TYPES} onDropAccepted={this.bindedHandleUploadAssets} />
-        {this.renderImageAssets(this.props.imageAssets)}
+        <button onClick={this.bindedHandleUploadAssets}>ADD TEXTURES</button>
+        <GameTexturesList textures={this.props.gameTextures} />
       </div>
     );
   }
@@ -71,11 +71,11 @@ function mapStateToProps(state, props) {
 
   return {
     gameid,
-    imageAssets: GetGameImageAssets({ state, gameid })
+    gameTextures: GetGameTextures({ state, gameid })
   };
 }
 const StoreActions = {
-  UploadImageAssets
+  ViewCreateImageAsset
 };
 
 export default connect(
