@@ -10,6 +10,14 @@ import React, { Component } from 'react';
 class GameTexturesList extends Component {
   constructor() {
     super();
+
+    this.bindedHandleSelectTexture = this.handleSelectTexture.bind(this);
+  }
+
+  handleSelectTexture(e) {
+    if (this.props.onSelectTexture) {
+      this.props.onSelectTexture(e.currentTarget.getAttribute('data-textureid'));
+    }
   }
 
   /*
@@ -25,7 +33,12 @@ class GameTexturesList extends Component {
   renderTextures(textures) {
     return textures.map((texture, index) => {
       return (
-        <div key={index} className="texture-wrap">
+        <div
+          key={index}
+          className="texture-wrap"
+          data-textureid={texture.id}
+          onClick={this.bindedHandleSelectTexture}
+        >
           <div className="texture-img">
             <img src={texture.src} />
           </div>
@@ -43,7 +56,8 @@ class GameTexturesList extends Component {
 */
 
 GameTexturesList.defaultprops = {
-  textures: []
+  textures: [],
+  onSelectTexture: false
 };
 
 export default GameTexturesList;

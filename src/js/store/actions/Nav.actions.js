@@ -9,6 +9,7 @@ export const VIEW_GAME_SCREEN = '[NAV] VIEW_GAME_SCREEN';
 export const VIEW_CREATE_GAME = '[NAV] VIEW_CREATE_GAME';
 export const VIEW_CREATE_IMAGE_ASSET = '[NAV] VIEW_CREATE_IMAGE_ASSET';
 export const CLOSE_MODAL = '[NAV] CLOSE_MODAL';
+export const VIEW_TEXTURE_ASSET = '[NAV] VIEW_TEXTURE_ASSET';
 
 //actions
 export const ViewGames = () => ({
@@ -42,6 +43,10 @@ export const ViewCreateGame = () => ({
 });
 export const ViewCreateImageAsset = () => ({
   type: VIEW_CREATE_IMAGE_ASSET
+});
+export const ViewTextureAsset = ({ textureid }) => ({
+  type: VIEW_TEXTURE_ASSET,
+  payload: { textureid }
 });
 export const CloseOpenModal = () => ({
   type: CLOSE_MODAL

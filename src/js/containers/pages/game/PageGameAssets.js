@@ -6,7 +6,7 @@ import { connect } from 'react-redux';
 import { URL_PROP_GAMEID } from 'constants/AppUrls';
 
 // actions
-import { ViewCreateImageAsset } from 'store/actions/Nav.actions';
+import { ViewCreateImageAsset, ViewTextureAsset } from 'store/actions/Nav.actions';
 
 // selectors
 import { GetGameTextures } from 'store/selectors/Games.selectors';
@@ -23,10 +23,16 @@ import GameTexturesList from 'components/GameTexturesList';
 class PageGameAssets extends Component {
   constructor() {
     super();
+    this.bindedHandleSelectTextureAsset = this.handleSelectTextureAsset.bind(this);
     this.bindedHandleUploadAssets = this.handleUploadAssets.bind(this);
   }
 
-  handleUploadAssets(files) {
+  handleSelectTextureAsset(textureid) {
+    console.log(textureid);
+    this.props.ViewTextureAsset({ textureid });
+  }
+
+  handleUploadAssets() {
     this.props.ViewCreateImageAsset();
   }
 
@@ -42,7 +48,10 @@ class PageGameAssets extends Component {
       <div className="app-screen game-assets">
         <p>PageGameAssets</p>
         <button onClick={this.bindedHandleUploadAssets}>ADD TEXTURES</button>
-        <GameTexturesList textures={this.props.gameTextures} />
+        <GameTexturesList
+          textures={this.props.gameTextures}
+          onSelectTexture={this.bindedHandleSelectTextureAsset}
+        />
       </div>
     );
   }
@@ -75,7 +84,8 @@ function mapStateToProps(state, props) {
   };
 }
 const StoreActions = {
-  ViewCreateImageAsset
+  ViewCreateImageAsset,
+  ViewTextureAsset
 };
 
 export default connect(

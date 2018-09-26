@@ -63,6 +63,12 @@ const NavMiddleware = ({ dispatch, getState }) => (next) => (action) => {
         state: { modal: AppUrls.MODAL_CREATE_IMAGE_ASSET }
       });
       break;
+    case NavActions.VIEW_TEXTURE_ASSET:
+      setUrlState(dispatch, {
+        pathname: state.route.location.pathname,
+        state: { modal: AppUrls.MODAL_TEXTURE_ASSET, textureid: action.payload.textureid }
+      });
+      break;
     case NavActions.CLOSE_MODAL:
       setUrlState(dispatch, state.route.location.pathname);
       break;

@@ -18,6 +18,7 @@ import PageGameScreen from 'containers/pages/game/PageGameScreen';
 import PageGameSettings from 'containers/pages/game/PageGameSettings';
 import PageGameNotFound from 'containers/pages/game/PageGameNotFound';
 import ModalAddImageAsset from 'containers/pages/game/ModalAddImageAsset';
+import ModalTextureAsset from 'containers/pages/game/ModalTextureAsset';
 
 /*
 ================================================================================
@@ -72,9 +73,13 @@ class GameRouter extends Component {
   }
 
   renderModal(modal) {
+    console.log(modal);
     switch (modal) {
       case AppUrls.MODAL_CREATE_IMAGE_ASSET:
         return <Route component={ModalAddImageAsset} />;
+      case AppUrls.MODAL_TEXTURE_ASSET:
+        console.log('ModalTextureAsset');
+        return <Route component={ModalTextureAsset} />;
     }
 
     return null;
